@@ -6,22 +6,22 @@ type EditorProps = {
     onSubmit: (value: string) => void
 }
 
-export const Editor: FC<EditorProps> = (props) => {
+export const Editor: FC<EditorProps> = ({ onSubmit }) => {
     const [text, setText] = useState('')
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = 
         e => setText(e.target.value)
 
-    const onSubmit: React.FormEventHandler<HTMLButtonElement> =
+    const onClick: React.FormEventHandler<HTMLButtonElement> =
         e => {
             e.preventDefault()
-            props.onSubmit(text)
+            onSubmit(text)
         }
 
     return (
         <div>
             <input onChange={handleChange} type="text" />
-            <button onSubmit={onSubmit}>
+            <button onClick={onClick}>
                 Create
             </button>
         </div>
